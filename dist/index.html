@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Qwen Create · 插件交互 Demo</title>
+  <meta name="description" content="Qwen Create 浏览器侧边栏、悬停收藏与拖拽收藏的交互演示。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="reference.css?v=18">
+</head>
+<body class="reference-layout">
+  <button id="demo-controls-toggle" aria-label="演示设置" title="演示设置"><span data-icon="menu"></span></button>
+  <header class="demo-bar">
+    <div class="demo-brand"><span class="demo-dot"></span><strong>Create</strong><span class="demo-label">INTERACTION LAB</span></div>
+    <div class="mode-switch" role="group" aria-label="收藏交互方式"><button class="active" data-mode="hover">A · 悬停收藏</button><button data-mode="drag">B · 拖拽收藏</button></div>
+    <div class="demo-actions"><span class="demo-note">交互演示</span><button id="library-button">收藏库 <span id="saved-count">0</span></button><button id="sidebar-toggle" aria-label="展开或收起侧边栏"></button></div>
+  </header>
+  <main class="workspace" id="workspace">
+    <section class="browse" id="browse">
+      <nav class="web-nav"><a href="#" class="muse-logo">muse<span>.</span></a><div class="web-links"><button class="selected" data-feed="all">Discover</button><button data-feed="skincare">Skincare</button><button data-feed="lifestyle">Lifestyle</button></div><button class="avatar" id="open-library-nav" aria-label="打开我的收藏">C</button></nav>
+      <section class="feed-head"><div><p class="eyebrow">A LITTLE INSPIRATION, EVERY DAY</p><h1>Good ideas start here.</h1><p class="subtitle">值得停留的创意，值得收藏的灵感。</p></div><div class="feed-switch"><button class="active" data-feed="all">For you</button><button data-feed="saved">Saved</button></div></section>
+      <div class="interaction-hint" id="interaction-hint"></div>
+      <section class="video-grid" id="video-grid" aria-label="参考视频"></section>
+      <footer class="feed-footer"><span>CURATED FOR THE CURIOUS</span><span>示例内容 · 收藏记录仅保存在当前浏览器</span></footer>
+    </section>
+    <aside class="sidebar" id="sidebar" aria-label="Qwen Create 侧边栏">
+      <header class="sidebar-head"><div class="chat-top"><span class="brand-mark" id="brand-mark"></span><button class="chat-title" id="history-toggle" aria-expanded="false"><span id="current-chat-title">New inspiration</span><span data-icon="chevron"></span></button><button class="new-chat" id="new-chat" aria-label="新建会话"><span data-icon="plus"></span><span>New chat</span></button><button class="icon-button" id="close-sidebar" aria-label="收起侧边栏"><span data-icon="close"></span></button></div><div class="chat-meta"><span id="chat-meta">Your creative companion</span><button id="open-main">Open in app <span data-icon="external"></span></button></div></header>
+      <div class="history-menu hidden" id="history-menu"><label class="search-field"><span data-icon="search"></span><input id="history-search" placeholder="Search chats" aria-label="搜索会话"></label><div id="history-items"></div></div>
+      <section class="conversation" id="conversation" aria-live="polite"></section>
+      <section class="composer-zone">
+        <div class="composer" id="composer"><div class="model-row"><span id="active-tool" class="hidden"></span><label><span class="sr-only">选择 Model</span><select id="model-select"></select></label></div><div class="attachment-row" id="attachments"></div><textarea id="prompt" rows="2" placeholder="Describe your idea…" aria-label="创作需求"></textarea><div class="composer-actions"><div class="upload-wrap"><button class="round-button" id="upload-toggle" aria-label="添加参考素材" title="添加参考素材"><span data-icon="plus"></span></button><div id="upload-menu" class="upload-menu hidden"><button id="upload-local"><span data-icon="upload"></span>File</button><button id="upload-assets"><span data-icon="folder"></span>Assets</button><button id="upload-photo"><span data-icon="image"></span>Photo</button></div></div><div class="send-actions"><button class="optimize-text" id="optimize" title="Add missing details to your prompt" aria-label="Optimize Prompt">Optimize Prompt</button><button class="round-button send" id="send" disabled aria-label="发送需求"><span data-icon="arrowUp"></span></button></div></div></div>
+        <div class="tool-viewport"><div class="tool-rail" id="tool-rail" aria-label="左右滑动查看工具"></div><div class="rail-fade"></div></div>
+      </section>
+      <div id="sidebar-drop" class="sidebar-drop hidden"><span data-icon="plus"></span><strong>Drop to add a reference</strong></div>
+    </aside>
+  </main>
+  <button class="launcher" id="launcher" aria-label="展开或收起 Create"></button>
+  <div class="save-popover hidden" id="save-popover" role="dialog" aria-label="选择收藏文件夹"></div>
+  <div class="collector-menu hidden" id="collector-menu" role="dialog" aria-label="已收藏视频"></div>
+  <div class="modal-backdrop hidden" id="modal-backdrop"><section class="modal" id="modal" role="dialog" aria-modal="true" tabindex="-1"></section></div>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <input type="file" id="file-input" accept="image/*,video/*" multiple hidden>
+  <input type="file" id="photo-input" accept="image/*" multiple hidden>
+  <script src="app.js?v=26"></script>
+</body>
+</html>
